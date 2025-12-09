@@ -1,0 +1,5 @@
+mountpoints:
+  /:
+    url: https://author-p148860-e338290-cmstg.adobeaemcloud.com/bin/franklin.delivery/lovelymandal16/testathon-xwalk-s11/main
+    type: "markup"
+    suffix: ".html"
