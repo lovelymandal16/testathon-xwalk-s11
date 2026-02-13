@@ -298,7 +298,7 @@ export function createInput(fd) {
     input.setAttribute('step', 'any');
   }
   setPlaceholder(input, fd);
-  // setAutocomplete(input, fd);
+  setAutocomplete(input, fd);
   setConstraints(input, fd);
   return input;
 }
