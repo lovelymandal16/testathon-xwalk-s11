@@ -151,7 +151,6 @@ export default class DocBasedFormToAF {
     Pattern: 'pattern',
     Value: 'value',
     Placeholder: 'placeholder',
-    Autocomplete: 'autocomplete',
     Field: 'name',
     Name: 'name',
     ReadOnly: 'readOnly',
