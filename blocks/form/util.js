@@ -285,6 +285,12 @@ export function setPlaceholder(element, fd) {
   }
 }
 
+export function setAutocomplete(element, fd) {
+  if (fd.autocomplete) {
+    element.setAttribute('autocomplete', fd.autocomplete);
+  }
+}
+
 export function createInput(fd) {
   const input = document.createElement('input');
   input.type = getHTMLRenderType(fd);
@@ -292,6 +298,7 @@ export function createInput(fd) {
     input.setAttribute('step', 'any');
   }
   setPlaceholder(input, fd);
+  // setAutocomplete(input, fd);
   setConstraints(input, fd);
   return input;
 }

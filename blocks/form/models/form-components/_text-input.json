@@ -32,7 +32,7 @@
                     "...": "../form-common/_basic-input-default-value-fields.json#/fields"
                 },
                 {
-                    "...": "../form-common/_basic-input-autocomplete-flags.json#/fields"
+                    "...": "../form-common/_basic-input-autocomplete-fields.json#/fields"
                 },
                 {
                     "component": "boolean",
