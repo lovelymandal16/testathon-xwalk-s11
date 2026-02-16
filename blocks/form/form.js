@@ -132,6 +132,11 @@ function createImage(fd) {
       : name;
   }
   field.append(createOptimizedPicture(imagePath, altText));
+  if (altText) {
+    field.setAttribute('tabindex', '0');
+    field.setAttribute('role', 'img');
+    field.setAttribute('aria-label', altText);
+  }
   return field;
 }
 
