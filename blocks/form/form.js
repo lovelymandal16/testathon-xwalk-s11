@@ -119,6 +119,18 @@ function createPlainText(fd) {
   return wrapper;
 }
 
+function getAltFromImagePath(path) {
+  if (!path || typeof path !== 'string') return '';
+  try {
+    const pathname = path.split('?')[0].trim();
+    const filename = pathname.split('/').pop() || '';
+    const nameWithoutExt = filename.replace(/\.[a-zA-Z0-9]+$/, '');
+    return decodeURIComponent(nameWithoutExt).replace(/[-_]+/g, ' ').trim().slice(0, 125) || '';
+  } catch {
+    return '';
+  }
+}
+
 function createImage(fd) {
   const field = createFieldWrapper(fd);
   field.id = fd?.id;
@@ -130,6 +142,9 @@ function createImage(fd) {
     altText = isPlaceholderName
       ? (fd['jcr:title'] || fd.label?.value || '').trim() || ''
       : name;
+  }
+  if (!altText && imagePath) {
+    altText = getAltFromImagePath(imagePath);
   }
   field.append(createOptimizedPicture(imagePath, altText));
   if (altText) {
