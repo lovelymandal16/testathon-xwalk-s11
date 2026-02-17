@@ -119,39 +119,19 @@ function createPlainText(fd) {
   return wrapper;
 }
 
-function getAltFromImagePath(path) {
-  if (!path || typeof path !== 'string') return '';
-  try {
-    const pathname = path.split('?')[0].trim();
-    const filename = pathname.split('/').pop() || '';
-    const nameWithoutExt = filename.replace(/\.[a-zA-Z0-9]+$/, '');
-    return decodeURIComponent(nameWithoutExt).replace(/[-_]+/g, ' ').trim().slice(0, 125) || '';
-  } catch {
-    return '';
-  }
-}
-
 function createImage(fd) {
   const field = createFieldWrapper(fd);
   field.id = fd?.id;
   const imagePath = fd.value || fd.properties['fd:repoPath'] || '';
-  let altText = (fd.altText || 'test1').trim();
+  let altText = (fd.altText || '').trim();
   if (!altText) {
-    const name = (fd.name || 'test2').trim();
+    const name = (fd.name || '').trim();
     const isPlaceholderName = /^form_image[\d_]*$/i.test(name) || /^image\d*$/i.test(name);
     altText = isPlaceholderName
       ? (fd['jcr:title'] || fd.label?.value || '').trim() || ''
       : name;
   }
-  if (!altText && imagePath) {
-    altText = getAltFromImagePath(imagePath);
-  }
   field.append(createOptimizedPicture(imagePath, altText));
-  if (altText) {
-    field.setAttribute('tabindex', '0');
-    field.setAttribute('role', 'img');
-    field.setAttribute('aria-label', altText);
-  }
   return field;
 }
 
