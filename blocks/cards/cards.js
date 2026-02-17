@@ -15,16 +15,7 @@ export default function decorate(block) {
     ul.append(li);
   });
   ul.querySelectorAll('picture > img').forEach((img) => {
-    let alt = (img.getAttribute('alt') || '').trim();
-
-    const isPlaceholderAlt = !alt || /^image\d*$/i.test(alt);
-    if (isPlaceholderAlt) {
-      const li = img.closest('li');
-      const cardBody = li?.querySelector('.cards-card-body');
-      const fallback = cardBody?.textContent?.replace(/\s+/g, ' ').trim().slice(0, 125) || '';
-      alt = fallback || '';
-    }
-    const optimizedPic = createOptimizedPicture(img.src, alt, false, [{ width: '750' }]);
+    const optimizedPic = createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]);
     moveInstrumentation(img, optimizedPic.querySelector('img'));
     img.closest('picture').replaceWith(optimizedPic);
   });

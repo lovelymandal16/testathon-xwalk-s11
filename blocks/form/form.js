@@ -135,9 +135,9 @@ function createImage(fd) {
   const field = createFieldWrapper(fd);
   field.id = fd?.id;
   const imagePath = fd.value || fd.properties['fd:repoPath'] || '';
-  let altText = (fd.altText || '').trim();
+  let altText = (fd.altText || 'test1').trim();
   if (!altText) {
-    const name = (fd.name || '').trim();
+    const name = (fd.name || 'test2').trim();
     const isPlaceholderName = /^form_image[\d_]*$/i.test(name) || /^image\d*$/i.test(name);
     altText = isPlaceholderName
       ? (fd['jcr:title'] || fd.label?.value || '').trim() || ''
